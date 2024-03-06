@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Journey_Flight {
+  id       Int      @id @default(autoincrement())
+  journey  Journey  @relation(fields: [journeyId], references: [id])
+  flight   Flight   @relation(fields: [flightId], references: [id])
+  journeyId Int
+  flightId Int
+}
+
+model Journey {
+  id Int @id @default(autoincrement())
+  Origin String
+  Destination String
+  price Decimal
+  flights Journey_Flight[]
+}
+
+model Flight{
+  id Int @id @default(autoincrement())
+  Origin String
+  Destination String
+  price Decimal
+  journeys Journey_Flight[]
+}
+
+model Transport{
+  id Int @id @default(autoincrement())
+  FlightCarrier String
+  FlightNumber String
+}
+
+
+
+
+
