@@ -29,21 +29,22 @@ model Journey {
   flights Journey_Flight[]
 }
 
+model Transport{
+  id Int @id @default(autoincrement())
+  FlightCarrier String
+  FlightNumber String
+  Flights Flight[]
+}
+
 model Flight{
   id Int @id @default(autoincrement())
   Origin String
   Destination String
   price Decimal
+  transportId Int
   journeys Journey_Flight[]
+  transport Transport @relation(fields: [transportId], references: [id])
 }
-
-model Transport{
-  id Int @id @default(autoincrement())
-  FlightCarrier String
-  FlightNumber String
-}
-
-
 
 
 
