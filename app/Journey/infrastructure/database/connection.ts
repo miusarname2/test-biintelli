@@ -15,16 +15,3 @@ prismaConnection.flight.findMany({
     }
 })
 
-/* prismaConnection.journey.create({
-    data:{
-        Origin:"a",
-        Destination:"findFlight",
-        price:"a",
-    }
-})
-prismaConnection.journey_Flight.create({
-    data:{
-        flightId:1,
-        journeyId:2,
-    }
-}) */
