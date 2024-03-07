@@ -102,15 +102,55 @@ export class Operations {
                 });
                 
                 const filteredFlights = data.filter((flight:any) =>
-                    (flight.DepartureStation === "CUC" && flight.ArrivalStation === "STA") ||
-                    (flight.DepartureStation === "STA" && flight.ArrivalStation === "CUC")
+                    (flight.DepartureStation === info.Origin && flight.ArrivalStation === info.Destination) ||
+                    (flight.DepartureStation === info.Destination && flight.ArrivalStation === info.Origin)
                 );
                 
-                console.log(filteredFlights);
+
+                const transportResults = [];
+const flightResults = [];
+const journeyResults = [];
+
+for (let i = 0; i < filteredFlights.length; i++) {
+    const transportResult = await this.db.transport.create({
+        data: {
+            FlightCarrier: filteredFlights[i].FlightCarrier,
+            FlightNumber: filteredFlights[i].FlightNumber
+        }
+    });
+    transportResults.push(transportResult);
+
+    const flightResult = await this.db.flight.create({
+        data: {
+            Destination: filteredFlights[i].ArrivalStation,
+            Origin: filteredFlights[i].DepartureStation,
+            price: filteredFlights[i].Price,
+            transportId: transportResult.id
+        }
+    });
+    flightResults.push(flightResult);
+
+    const journeyResult = await this.db.journey.create({
+        data: {
+            Origin: filteredFlights[i].DepartureStation,
+            Destination: filteredFlights[i].ArrivalStation,
+            price: filteredFlights[i].Price
+        }
+    });
+    journeyResults.push(journeyResult);
+
+    const journeyFlightResult = await this.db.journey_Flight.create({
+        data: {
+            flightId: flightResult.id,
+            journeyId: journeyResult.id
+        }
+    });
+}
+
 
                 
 
-                return filteredFlights
+return await this.ObtainInfo(info);
             }
         }
     }    
