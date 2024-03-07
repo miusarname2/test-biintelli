@@ -1,6 +1,6 @@
 import express, { Express, Request, Response } from "express";
-import { user } from "./controller/routes/user.routes.js";
-import { crearToken,validarToken } from "./controller/helpers/jwt.controller.js";
+import { route } from "./app/Journey/aplication/journey.routes.js";
+import { crearToken,validarToken } from "./auth/jwt.js";
 import morgan from 'morgan'
 import cors from 'cors';
 import dotenv from "dotenv";
@@ -20,7 +20,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.get('/tk',crearToken);
-app.use("/user", validarToken,user);
+app.use("/user",route);
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
