@@ -29,12 +29,12 @@ export class Operations {
             where: {
                 OR: [
                     {
-                        Origin: info.Destination,
-                        Destination: info.Origin
+                        Origin: info.Destiny,
+                        Destination: info.Origins
                     },
                     {
-                        Origin: info.Origin,
-                        Destination: info.Destination,
+                        Origin: info.Origins,
+                        Destination: info.Destiny,
                     }
                 ]
             }
@@ -53,12 +53,12 @@ export class Operations {
             where: {
                 OR: [
                     {
-                        Origin: info.Destination,
-                        Destination: info.Origin
+                        Origin: info.Destiny,
+                        Destination: info.Origins
                     },
                     {
-                        Origin: info.Origin,
-                        Destination: info.Destination,
+                        Origin: info.Origins,
+                        Destination: info.Destiny,
                     }
                 ]
             }
@@ -95,9 +95,8 @@ export class Operations {
     }
 
     async consultExternalDataAndFilter(info:object | any):Promise<any>{
-        const apiUrl = 'https://bitecingcom.ipage.com/testapi/avanzado.js';
 
-                axios.get(apiUrl)
+                axios.get(this.fetchLink)
                 .then(response => {
                     const arrayDeObjetos = response.data;
                     this.createDataFile(arrayDeObjetos);
@@ -107,8 +106,8 @@ export class Operations {
                 });
                 
                 const filteredFlights = data.filter((flight:any) =>
-                    (flight.DepartureStation === info.Origin && flight.ArrivalStation === info.Destination) ||
-                    (flight.DepartureStation === info.Destination && flight.ArrivalStation === info.Origin)
+                    (flight.DepartureStation === info.Origins && flight.ArrivalStation === info.Destiny) ||
+                    (flight.DepartureStation === info.Destiny && flight.ArrivalStation === info.Origins)
                 );
                 return await filteredFlights;
     }
@@ -162,6 +161,17 @@ export class Operations {
                 }
 
     }
+
+    async deleteDataOfTheFile (): Promise<void>{
+        const dataArchive = "export const data: any =[]";
+        const NombreArchivo = 'data.ts';
+        const nombreDirectorio = "app/Journey/infrastructure/repository";
+        const rutaDirectorio = path.join(process.cwd(), nombreDirectorio);
+        const rutaArchivo = path.join(rutaDirectorio, NombreArchivo);
+        fs.mkdirSync(rutaDirectorio, { recursive: true });
+        fs.writeFileSync(rutaArchivo, dataArchive);
+        console.log('El archivo ha sido creado exitosamente!');
+        }
 }
 
 
