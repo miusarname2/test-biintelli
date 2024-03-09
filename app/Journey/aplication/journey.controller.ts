@@ -19,8 +19,10 @@ export class JourneyController{
             if (await resultConsultExternalAPI.length >=1) {
                 const createInforByExternaAPIRes = await this.dbInteractions.createDataBasedOnExternalInformation(resultConsultExternalAPI);
                 console.log(createInforByExternaAPIRes)
+                await this.dbInteractions.deleteDataOfTheFile();
                 return await this.GetController(data);
             }
+            await this.dbInteractions.deleteDataOfTheFile();
             return {status:500}
         }
     }
