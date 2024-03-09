@@ -70,6 +70,54 @@ export const validarToken = async (req: Request | any, res: Response, next: any)
   }
 };
 
+/**
+ * @swagger
+ * /tk:
+ *   post:
+ *     security:
+ *       - bearerAuth: []
+ *     summary: Generar token de autenticación.
+ *     description: Genera un token de autenticación basado en el rol proporcionado.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               role:
+ *                 type: string
+ *                 description: Rol del usuario.
+ *     responses:
+ *       200:
+ *         description: Token generado exitosamente.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 role:
+ *                   type: string
+ *                   description: Rol del usuario.
+ *                 token:
+ *                   type: string
+ *                   description: Token de autenticación generado.
+ *       400:
+ *         description: Credenciales inválidas requeridas.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: number
+ *                   example: 400
+ *                 message:
+ *                   type: string
+ *                   example: Credenciales inválidas requeridas.
+ */
+
+
 export const crearToken = async (req: Request, res: Response) => {
   const encoder = new TextEncoder();
   if (req.body.role == "admin" || req.body.role == "usuario") {
