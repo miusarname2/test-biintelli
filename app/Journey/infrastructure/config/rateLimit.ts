@@ -3,8 +3,8 @@ import { Response } from "express";
 
 export let limitGrt = () => {
     return rateLimit({
-        windowMs: 50 * 1000,
-        max: 5,
+        windowMs: 3600 * 1000,
+        max: 50000,
         standardHeaders: true,
         legacyHeaders: false,
         skip: (req: any, res: Response) => {
