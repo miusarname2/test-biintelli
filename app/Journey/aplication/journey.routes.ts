@@ -77,6 +77,15 @@ export const journeyRoute:Router = Router();
  */
 
 journeyRoute.post('/',limitGrt(),validateUser,async(req:Request|any,res:Response)=>{
-    const resp = new JourneyController();
-    res.send(await resp.GetController(req.body));
+    try {
+      const resp = new JourneyController();
+      res.send(await resp.GetController(req.body));
+    } catch (e:any) {
+        const errorMessage = e.message;
+        const startIndex = errorMessage.indexOf('{');
+        const endIndex = errorMessage.lastIndexOf('}');
+        const jsonErrorString = errorMessage.substring(startIndex, endIndex + 1);
+        const parsedError = JSON.parse(jsonErrorString);
+        res.status(parsedError.status).json(parsedError)
+    }
 })

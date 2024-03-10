@@ -19,11 +19,11 @@ export class JourneyController{
             if (await resultConsultExternalAPI.length >=1) {
                 const createInforByExternaAPIRes = await this.dbInteractions.createDataBasedOnExternalInformation(resultConsultExternalAPI);
                 console.log(createInforByExternaAPIRes)
-                await this.dbInteractions.deleteDataOfTheFile();
+                const deleted = await this.dbInteractions.deleteDataOfTheFile();
                 return await this.GetController(data);
             }
             await this.dbInteractions.deleteDataOfTheFile();
-            return {status:500}
+            throw new Error(JSON.stringify({status: 404, message: "Not found route"}));
         }
     }
 }
