@@ -3,7 +3,7 @@
 
 # Ejecución de VIAJE POR COLOMBIA API REST:
 
-Como se mencionó previamente, la empresa VIAJE POR COLOMBIA busca una solución que permita conectar viajes en todo el mundo. Este proyecto debe recibir como entrada el origen y el destino del viaje del usuario. Luego, el sistema debe consultar todos las rutas asociados disponibles y determinar si es posible trazar una ruta de viaje. En caso afirmativo, se debe proporcionar al usuario la ruta calculada; de lo contrario, se emitirá un mensaje indicando que la ruta no puede ser calculada.
+Como se mencionó previamente, la empresa VIAJE POR COLOMBIA busca una solución que permita conectar viajes en todo el mundo. Este proyecto debe recibir como entrada el origen y el destino del viaje del usuario. Luego, el sistema debe consultar todos las rutas asociados disponibles y determinar si es posible trazar una ruta de viaje. En caso afirmativo, se debe proporcionar al usuario la ruta calculada; de lo contrario, se emitirá un mensaje indicando que la ruta no puede ser calculada, pero puedes empezar a usarlo ya mismo, en `test-biintelli.onrender.com` esta ya corriendo el servidor desplegado, puedes ir a `test-biintelli.onrender.com/api-docs` a probarlo ya mismo.
 
 ## Tabla de Contenidos:
 
