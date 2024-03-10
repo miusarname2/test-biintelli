@@ -115,9 +115,33 @@ Los requisitos para la ejecución de VIAJE POR COLOMBIA API REST son los siguien
   ```
 * Si quieres hacerlo aún mas sencillo puedes utilizar la extensión "Git Graph" y directamente clonas el repositorio después que tengas las credenciales sincronizadas con tu Github, clicando en el apartado clonar repositorio y pegas lo siguiente `https://github.com/miusarname2/test-biintelli` y procedes a ubicar el repositorio donde mas desees.
 * Luego de esto abriremos la terminal clicando en la parte superior del Visual Studio Code en el apartado "Terminal" y luego "New Terminal", ahí ejecutaremos el comando `npm update` o `npm install`descargar todas las dependencias previamente establecidas en el archivo "package.json".
+
+  **NOTA MUY IMPORTANTE: **Recuerda que el archivo de ejemplo ".env.example" deberás renombrarlo borrando el ".example" y quedará ".env" para que la dependencia "dotenv" pueda acceder a las variables de entorno, recomendamos realizar todas estas pruebas conectadas a nuestro servidor de MySQL para evitar conflictos y si deseas cambiar el puerto,solo debes ir al archivo .env y cambiar la variable de entorno `PORT` o a las variables de entorno de tu sistema y cambiar la variable de entorno `PORT`  recuerda que en la consola obtendrás la nueva ruta para que procedas a copiarla e ingresarla en el "Thunder Client" o  "Postman",si deseas utilizar alguno de estos, pero recuerda que swagger esta en `http://localhost:<tu_puerto>/api-docs/`.
+
+  Si no cambias el nombre del archivo `.env.example` a `.env`, te mostara algo como esto:
+
+    ```bash
+  [1]
+  [1] PrismaClientInitializationError: error: Environment variable not found: DATABASE_URL.
+  [1]   -->  schema.prisma:13
+  [1]    |
+  [1] 12 |   provider = "mysql"
+  [1] 13 |   url      = env("DATABASE_URL")
+  [1]    |
+  [1]
+  [1] Validation Error Count: 1
+  [1]     at r (C:\Users\Oscar Alvarez\Desktop\Rima-Backend-Public-\node_modules\@prisma\client\runtime\library.js:113:2493) {
+  [1]   clientVersion: '5.10.2',
+  [1]   errorCode: 'P1012'
+  [1] }
+  [1]
+  [1] Node.js v21.6.1
+  ``` 
+
+asi que recomentamos hacerlo,para que funcione satisfactoriamente
+
 * Por ultimo iniciaremos el servidor con el comando en terminal `npm run dev`, esto inicializará nuestro servidor y podremos visualizar en que ruta y puerto esta el servidor de node en la consola para al hacer uso de ellas en las consultas debes ir a swagger que esta en `http://localhost:<tu_puerto>/api-docs/` . Un ejemplo de lo que deberiamos ver en consola es lo siguiente:
 
-  **NOTA IMPORTANTE: **Recuerda que el archivo de ejemplo ".env.example" deberás renombrarlo borrando el ".example" y quedará ".env" para que la dependencia "dotenv" pueda acceder a las variables de entorno, recomendamos realizar todas estas pruebas conectadas a nuestro servidor de MySQL para evitar conflictos y si deseas cambiar el puerto,solo debes ir al archivo .env y cambiar la variable de entorno `PORT` o a las variables de entorno de tu sistema y cambiar la variable de entorno `PORT`  recuerda que en la consola obtendrás la nueva ruta para que procedas a copiarla e ingresarla en el "Thunder Client" o  "Postman",si deseas utilizar alguno de estos, pero recuerda que swagger esta en `http://localhost:<tu_puerto>/api-docs/` .
 
   ```bash
   10:16:50 - Starting compilation in watch mode...
