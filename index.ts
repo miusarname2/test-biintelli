@@ -32,6 +32,9 @@ const options = {
     },
     servers: [
       {
+        url: `https://test-biintelli.onrender.com/`,
+      },
+      {
         url: `http://localhost:${port}`,
       },
     ],

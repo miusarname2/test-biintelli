@@ -74,8 +74,6 @@ export const validarToken = async (req: Request | any, res: Response, next: any)
  * @swagger
  * /tk:
  *   post:
- *     security:
- *       - bearerAuth: []
  *     summary: Generar token de autenticación.
  *     description: Genera un token de autenticación basado en el rol proporcionado.
  *     requestBody:
