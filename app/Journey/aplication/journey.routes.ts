@@ -61,6 +61,16 @@ export const journeyRoute:Router = Router();
  *                 message:
  *                   type: string
  *                   example: Datos de entrada inválidos.
+ *       401:
+ *         description: No haz enviado el token.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Unauthorized.
  *       500:
  *         description: Error interno del servidor al obtener precios de viaje.
  *         content:
