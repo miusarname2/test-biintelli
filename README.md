@@ -3,7 +3,7 @@
 
 # Ejecución de VIAJE POR COLOMBIA API REST:
 
-Como se mencionó previamente, la empresa VIAJE POR COLOMBIA busca una solución que permita conectar viajes en todo el mundo. Este proyecto debe recibir como entrada el origen y el destino del viaje del usuario. Luego, el sistema debe consultar todos las rutas asociados disponibles y determinar si es posible trazar una ruta de viaje. En caso afirmativo, se debe proporcionar al usuario la ruta calculada; de lo contrario, se emitirá un mensaje indicando que la ruta no puede ser calculada, pero puedes empezar a usarlo ya mismo, en `test-biintelli.onrender.com` esta ya corriendo el servidor desplegado, puedes ir a `test-biintelli.onrender.com/api-docs` a probarlo ya mismo.
+Como se mencionó previamente, la empresa VIAJE POR COLOMBIA busca una solución que permita conectar viajes en todo el mundo. Este proyecto debe recibir como entrada el origen y el destino del viaje del usuario. Luego, el sistema debe consultar todos las rutas asociados disponibles y determinar si es posible trazar una ruta de viaje. En caso afirmativo, se debe proporcionar al usuario la ruta calculada; de lo contrario, se emitirá un mensaje indicando que la ruta no puede ser calculada, pero puedes empezar a usarlo ya mismo, en `test-biintelli.onrender.com` esta ya corriendo el servidor desplegado, puedes ir a `test-biintelli.onrender.com/api-docs` a probarlo ya mismo, pero deberas esperar a que inicie, normalmente dura entre 5 y 60 segundo.
 
 ## Tabla de Contenidos:
 
@@ -96,8 +96,6 @@ model Flight{
 }
 ```
 
-Este modelo establece la estructura y las restricciones de los datos para las colecciones `users` y `videos` en la base de datos.
-
 
 ## 3.Requisitos:
 
@@ -139,6 +137,8 @@ Los requisitos para la ejecución de VIAJE POR COLOMBIA API REST son los siguien
   ``` 
 
 asi que recomentamos hacerlo,para que funcione satisfactoriamente
+
+**Nota Importante** :Si deseas cambiar la configuración y usar una base de datos local o una base de datos MySQL diferente a la que te envié, lo que debes hacer es reemplazar la variable de entorno `DATABASE_URL` y ponerle como valor el string de conexión para la base de datos. Luego de eso, ejecuta las migraciones con `npx prisma migrate reset` para que se hagan las migraciones a la base de datos.
 
 * Por ultimo iniciaremos el servidor con el comando en terminal `npm run dev`, esto inicializará nuestro servidor y podremos visualizar en que ruta y puerto esta el servidor de node en la consola para al hacer uso de ellas en las consultas debes ir a swagger que esta en `http://localhost:<tu_puerto>/api-docs/` . Un ejemplo de lo que deberiamos ver en consola es lo siguiente:
 
