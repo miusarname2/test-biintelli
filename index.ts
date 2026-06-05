@@ -28,12 +28,9 @@ const options = {
     info: {
       title: "Flight Manager",
       version: "1.0.0",
-      description: "El backend de la aplicación de gestión de vídeos ofrece servicios para la administración de usuarios, gestión de vídeos y autenticación. Incluye funcionalidades como CRUD de usuarios y vídeos, autenticación segura, recuperación de vídeos por usuario, acceso a vídeos públicos y privados, lista de vídeos mejor calificados, y endpoints adicionales como búsqueda por palabras clave y gestión de comentarios. En resumen, proporciona una API segura para operaciones relacionadas con usuarios, vídeos y características clave de la aplicación.",
+      description: "API de gestión de viajes y vuelos",
     },
     servers: [
-      {
-        url: `https://test-biintelli.onrender.com/`,
-      },
       {
         url: `http://localhost:${port}`,
       },
@@ -48,14 +45,22 @@ const options = {
       }
     },
   },
-  apis: ["index.ts","./auth/jwt.ts","./app/Journey/aplication/journey.routes.ts"], // Ruta a los archivos donde se definen las rutas de la API
+  apis: ["index.ts","./auth/jwt.ts","./app/Journey/aplication/journey.routes.ts"],
 };
 
 // Init swagger
-
 const specs = swaggerJsdoc(options);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
+// API JSON endpoint
+app.get("/api-json", (req: Request, res: Response) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(specs);
+});
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs, {
+  customCss: '.swagger-ui { background: #f5f5f5; }',
+  customSiteTitle: 'Flight Manager API Docs'
+}));
 
 // Define routes
 app.get("/", (req: Request, res: Response) => {
