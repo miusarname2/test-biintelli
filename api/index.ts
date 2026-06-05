@@ -20,7 +20,7 @@ app.use(cors({ origin: "*" }));
 // Swagger config
 const options = {
   swaggerDefinition: {
-    openapi: "3.1.0",
+    openapi: "3.0.3",
     info: {
       title: "Flight Manager",
       version: "1.0.0",
