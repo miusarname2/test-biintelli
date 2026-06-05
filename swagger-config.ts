@@ -15,12 +15,8 @@ export const swaggerDefinition = {
       description: "Desarrollo local"
     },
     {
-      url: "https://tu-proyecto.vercel.app",
-      description: "Producción (Vercel)"
-    },
-    {
-      url: "https://test-biintelli.onrender.com",
-      description: "Producción (Render)"
+      url: "https://viajeporcolombiaapi.projects.omag.cloud/",
+      description: "Producción"
     }
   ],
   components: {
