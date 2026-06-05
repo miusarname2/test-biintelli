@@ -1,7 +1,7 @@
 import express, { Express, Request, Response } from "express";
-import swaggerJsdoc from "swagger-jsdoc";
 import { journeyRoute } from "../app/Journey/aplication/journey.routes.js";
 import { crearToken, validarToken } from "../auth/jwt.js";
+import { swaggerDefinition } from "../swagger-config.js";
 import morgan from 'morgan';
 import cors from 'cors';
 import dotenv from "dotenv";
@@ -17,37 +17,8 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors({ origin: "*" }));
 
-// Swagger config
-const options = {
-  swaggerDefinition: {
-    openapi: "3.0.3",
-    info: {
-      title: "Flight Manager",
-      version: "1.0.0",
-      description: "API de gestión de viajes y vuelos",
-    },
-    servers: [
-      {
-        url: `https://${process.env.VERCEL_URL || 'localhost:3000'}`,
-      },
-      {
-        url: `http://localhost:3000`,
-      },
-    ],
-    components: {
-      securitySchemes: {
-        bearerAuth: {
-          type: 'http',
-          scheme: 'bearer',
-          bearerFormat: 'JWT',
-        }
-      }
-    },
-  },
-  apis: ["api/index.ts", "auth/jwt.ts", "app/Journey/aplication/journey.routes.ts"],
-};
-
-const specs = swaggerJsdoc(options);
+// Usar la definición de Swagger
+const specs = swaggerDefinition;
 
 // API JSON endpoint
 app.get("/api-json", (req: Request, res: Response) => {
